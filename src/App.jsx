@@ -1,10 +1,16 @@
-function App() {
+import { useRoutes } from "react-router-dom"
+import routes from "./routes"
+import Topbar from "./components/topbar/Topbar"
+
+
+export default function App() {
+
+  const allRoutes = useRoutes(routes)
 
   return (
-    <>
-         <p className="text-red-500">Salam dobareh</p>
+    <> 
+          <Topbar/>
+          <div>{allRoutes}</div>
     </>
   )
 }
-
-export default App
