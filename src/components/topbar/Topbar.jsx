@@ -1,14 +1,31 @@
+import { useState , useEffect} from "react"
+import SideBarCart from "./SideBarCart/SideBarCart";
+
 export default function Topbar() {
+
+  const [mobileMenu , setMobileMenu] = useState(false);
+  const [sideBarBasket , setSideBarBasket] = useState(false);
+  const [scrollEffect,setScrollEffect] = useState(false);
+
+  useEffect(() => {
+     window.addEventListener("scroll",() => {
+       if(document.documentElement.scrollTop > 100){
+           setScrollEffect(true);
+       }else{
+           setScrollEffect(false);
+       }
+     })
+  },[]);
+
   return (
     <header className="">
-        
         {/* Topbar */}
        <section>
          <div className="container">
-            <div className="w-full p-4 md:p-8">
-              <div className="w-full flex items-center justify-between">
+            <div className="w-full">
+              <div className="w-full py-4 md:py-8 flex items-center justify-between">
                 <div className="w-[40%] md:w-[25%] xl:w-[15%] h-8">
-                  <img src="../../../public/images/logo.png" className="w-full h-full" alt="" />
+                  <img src="/images/logo.png" className="w-full h-full" alt="" />
                 </div>
                 <div className="hidden lg:flex items-center justify-center w-[45%] md:w-[55%] xl:w-[65%]">
                    <input type="text" placeholder="دنبال چی میگردی؟...." className="bg-[#F8F8F8] font-Samim p-3 rounded-md w-[65%]"/>
@@ -36,7 +53,7 @@ export default function Topbar() {
                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                     </svg>
                     </div>
-                    <div className="bg-[#F5F5F5] p-3 rounded-[50%] relative cursor-pointer">
+                    <div onClick={() => setSideBarBasket(prev => !prev)} className="bg-[#F5F5F5] p-3 rounded-[50%] relative cursor-pointer">
                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
                     </svg>
@@ -51,11 +68,143 @@ export default function Topbar() {
        </section>
 
         {/* Navbar */}
-       <section>
+       <section className={`transition-all duration-200 ${scrollEffect ? "scroll-effect mt-0" : "mt-5"}`}>
          <div className="container">
-
+           <div className="w-full">
+            <div className="w-full relative flex items-center justify-between">
+               <div onClick={() => setMobileMenu(prev => !prev)} className="p-2 flex lg:hidden rounded-sm bg-[#F2F2F2] w-10 h-10 cursor-pointer">
+                {mobileMenu ? 
+                ( 
+                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                )
+                 : 
+                 (               
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+                )
+                }
+               </div>
+                <nav className="w-[45%] hidden lg:flex lg:w-[60%] xl:w-[50%]">
+                  <ul className="*:font-Samim w-full gap-2 *:text-[1.1rem] flex items-center justify-between">
+                    <li className="text-[#1b6F58]">صفحه اصلی</li>
+                    <li className="flex items-center justify-between gap-2">لندینگ
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex items-center justify-between gap-2">فروشگاه
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex items-center justify-between gap-2">وبلاگ
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex items-center justify-between gap-2">صفحات
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li>پیگیری سفارشات</li>
+                  </ul>
+                </nav>
+                <div className="flex items-center justify-between w-[70%] md:w-[45%] lg:w-[30%] xl:w-[23%] gap-3 *:font-Samim *:text-[#9B9B9B]">
+                  <p>پشتیبانی</p>
+                  <p>راهنمایی</p>
+                  <p>برترین محصولات</p> 
+                </div>
+                {/* For mobile */}
+                <nav className={`block ${mobileMenu ? "h-[24rem]" : "h-0"} transition-all duration-200 absolute z-10 left-0 shadow-xl mx-auto overflow-hidden right-0 top-14 bg-white w-[100%] lg:hidden`}>
+                  <ul className="flex flex-col *:cursor-pointer">
+                  <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">لندینگ
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">ارتباط با ما
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">صفحات
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">خدمات
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">تیم ما
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">سوالات متداول
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">جدول قیمت گذاری 
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                    <li className="flex transition-all hover:bg-[#1B6F58] hover:text-white items-center justify-between gap-2 p-3 w-full font-Samim">پیگیری سفارشات
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4">
+                         <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                      </svg>
+                    </li>
+                  </ul>
+                </nav>
+            </div>
+           </div>
          </div>
        </section>
+
+       {/* Sidebar basket */}
+       <section className={`fixed z-10 ${sideBarBasket ? "left-0" : "left-[-25rem]"} top-0 bottom-0 transition-all duration-200 w-72 sm:w-80 bg-white`}>
+         <div className="p-5 h-full flex flex-col justify-between">
+           <div className="flex flex-col gap-5">
+           <div className="flex items-center justify-between w-full">
+              <p className="font-Samim">سبد خرید</p>
+              <div onClick={() => setSideBarBasket(false)} className="flex items-center justify-center gap-1 cursor-pointer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+                </svg>
+                <p className="font-Samim">بستن</p>
+              </div>
+           </div>
+           <div className="flex flex-col h-[29rem] overflow-y-scroll">
+              <SideBarCart/>
+              <SideBarCart/>
+              <SideBarCart/>
+              <SideBarCart/>
+              <SideBarCart/>
+              <SideBarCart/>
+              <SideBarCart/>
+           </div>
+           </div>
+           <div className="relative bg-white border-t pt-4">
+             <div className="flex items-center justify-between">
+                <p className="font-Samim">جمع جزع</p>
+                <span className="font-Yekan text-[#1B6F58]">35,000 تومان</span>
+             </div>
+             <div className="flex flex-col mt-3 gap-2 pt-2">
+             <a href="" className="border border-black p-2 w-full font-Samim transition-all duration-200 hover:bg-[#1B6F58] hover:text-white text-center">مشاهده سبد خرید</a>
+             <a href="" className="bg-[#1B6F58] text-white font-Samim p-2 w-full text-center">تسویه حساب</a>
+             </div>
+           </div>
+         </div>
+       </section>
+
+       <section onClick={() => setSideBarBasket(false)} className={`fixed cursor-pointer transition-all duration-200 ${sideBarBasket ? "visible opacity-80" : "invisible opacity-0"} top-0 left-0 bottom-0 right-0 w-full h-full bg-black z-0`}></section>
 
     </header>
   )
