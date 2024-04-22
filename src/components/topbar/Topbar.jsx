@@ -113,7 +113,7 @@ export default function Topbar() {
                     <li>پیگیری سفارشات</li>
                   </ul>
                 </nav>
-                <div className="flex items-center justify-between w-[70%] md:w-[45%] lg:w-[30%] xl:w-[23%] gap-3 *:font-Samim *:text-[#9B9B9B]">
+                <div className="flex items-center justify-between w-[80%] md:w-[45%] lg:w-[30%] xl:w-[23%] gap-3 *:font-Samim *:text-[#9B9B9B]">
                   <p>پشتیبانی</p>
                   <p>راهنمایی</p>
                   <p>برترین محصولات</p> 
@@ -181,7 +181,7 @@ export default function Topbar() {
                 <p className="font-Samim">بستن</p>
               </div>
            </div>
-           <div className="flex flex-col h-[29rem] overflow-y-scroll">
+           <div className="flex flex-col h-[28rem] sm:h-[29rem] overflow-y-scroll">
               <SideBarCart/>
               <SideBarCart/>
               <SideBarCart/>
