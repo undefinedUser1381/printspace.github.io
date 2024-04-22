@@ -24,4 +24,13 @@
         padding: 20px;
         @apply shadow-lg m-0
     }
+    .step-count::after{
+          content: "";
+          position: absolute;
+          top: 55px;
+          left: 50%;
+          height: 3rem;
+          width: 0.1rem;
+          background: #ccc;
+    }
 }
