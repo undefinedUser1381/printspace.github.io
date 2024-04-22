@@ -1,4 +1,5 @@
 import Carts from "./Carts/Carts";
+import Steps from "./Steps/Steps";
 
 export default function Home() {
   return (
@@ -31,7 +32,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
        
       <section className="mt-20">
         <div className="container">
@@ -51,6 +51,31 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mt-20">
+        <div className="container">
+          <div className="bg-[#F7F6F1] w-full h-auto rounded-xl p-5 sm:p-10">
+            <div className="flex flex-col gap-5">
+                 <h2 className="font-Samim text-[2.2rem]">چگونگی کارما</h2>
+                 <div className="flex flex-col-reverse lg:flex-row mt-5 items-center justify-between w-full gap-10">
+                 <div className="flex flex-col w-full lg:w-[45%] gap-9">
+                   <Steps/>
+                   <Steps/>
+                   <Steps/>
+                   <div className="flex flex-col sm:flex-row items-center justify-between lg:justify-start gap-5 mt-8">
+                     <a href="" className="w-[75%] sm:w-[45%] text-center font-Samim bg-black text-white p-4 rounded-lg transition-all duration-200 hover:bg-[#1B6F58]">درخواست طراحی</a>
+                     <a href="" className="w-[75%] sm:w-[45%] text-center font-Samim bg-transparent text-black p-4 rounded-xl">سایر موارد</a>
+                   </div>
+                 </div>
+                   <div className="w-full lg:w-[45%]">
+                    <div className="w-full h-full">
+                      <img src="images/banner-1-steps.png" className="w-full h-full" alt="" />
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       
 
 
