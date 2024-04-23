@@ -1,11 +1,15 @@
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 import Carts from "../../components/Carts/Carts";
 import Features from "../../components/Features/Features";
 import Steps from "../../components/Steps/Steps";
+import Comment from "../../components/Comment/Comment";
 
 export default function Home() {
   return (
-    <>
+    <main>
 
+      {/* Main section */}
       <section className="bg-[#F7F6F1] mt-10">
         <div className="container">
           <div className="w-full flex gap-16 flex-col-reverse lg:flex-row items-center justify-between h-auto pt-16 pb-16">
@@ -34,6 +38,7 @@ export default function Home() {
         </div>
       </section>
        
+       {/* Carts */}
       <section className="mt-20">
         <div className="container">
           <div className="flex flex-col gap-5">
@@ -52,6 +57,7 @@ export default function Home() {
         </div>
       </section>
 
+       {/* Steps */}
       <section className="mt-20">
         <div className="container">
           <div className="bg-[#F7F6F1] w-full h-auto rounded-xl p-5 sm:p-10">
@@ -78,6 +84,7 @@ export default function Home() {
         </div>
       </section>
       
+       {/* Features */}
       <section className="mt-20">
          <div className="container">
           <div className="flex flex-col">
@@ -93,6 +100,40 @@ export default function Home() {
          </div>
       </section>
 
+       {/* Comments */}
+       <section className="mt-20 bg-[#F8F8F8] h-auto pb-16">
+          <div className="pt-16 flex flex-col gap-5">
+           <h2 className="font-Samim text-[1.4rem] sm:text-[2rem] text-center">ببینید مشتریان ما چه می گویند</h2>
+           <p className="font-Samim leading-10 text-center">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه</p>
+          </div>
+          <div className='mt-20'>
+            <Swiper slidesPerView={1} spaceBetween={20} loop={true}
+             breakpoints={{
+                    640: {
+                      width: 640,
+                      slidesPerView: 2,
+                    },
+                    768: {
+                      width: 800,
+                      slidesPerView: 2,
+                    },
+                    1024: {
+                      width: 1024,
+                      slidesPerView: 3,
+                    },
+                    1200:{
+                      width: 1520,
+                      slidesPerView: 4,
+                    }
+                  }}
+                  >
+              <SwiperSlide><Comment img="images/testi-avatar-1.jpg" name="علی اصغر" job="وب دیزاینر"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-2.jpg" name="ممد کربلایی رمضان" job="هوش مصنوعی"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-3.jpg" name="سید احمد" job="وب دولوپر"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-5.jpg" name="حج نوروز" job="بازاریاب"/></SwiperSlide>
+             </Swiper>
+          </div> 
+       </section>
       
 
       <br />
@@ -108,30 +149,7 @@ export default function Home() {
       <br />
       <br />
       <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-    </>
+   
+    </main>
   )
 }
