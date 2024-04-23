@@ -1,5 +1,6 @@
-import Carts from "./Carts/Carts";
-import Steps from "./Steps/Steps";
+import Carts from "../../components/Carts/Carts";
+import Features from "../../components/Features/Features";
+import Steps from "../../components/Steps/Steps";
 
 export default function Home() {
   return (
@@ -39,7 +40,7 @@ export default function Home() {
             <h2 className="font-Samim text-[2rem] sm:text-[2.5rem] text-center md:text-right">محدوده محصولات فروشگاه</h2>
             <div className="flex flex-col gap-5 md:flex-row items-center justify-between">
               <p className="font-Samim text-[1.1rem] text-center md:text-right">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
-              <a className="font-Samim w-[70%] sm:w-[80%] md:w-[20%] p-3 border text-center transition-all duration-200 hover:bg-[#1B6F58] hover:text-white rounded-md" href="">بررسی کاتالوگ</a>
+              <a className="font-Samim w-[70%] sm:w-[80%] md:w-[20%] xl:w-[15%] p-3 border text-center transition-all duration-200 hover:bg-[#1B6F58] hover:text-white rounded-md" href="">بررسی کاتالوگ</a>
             </div>
             <div className="flex flex-col gap-10 sm:flex-wrap sm:flex-row lg:flex-nowrap items-center justify-between mt-10">
                     <Carts title="جعبه ای" img="/images/banner-1-2.jpg"/>
@@ -77,7 +78,22 @@ export default function Home() {
         </div>
       </section>
       
+      <section className="mt-20">
+         <div className="container">
+          <div className="flex flex-col">
+            <h2 className="font-Samim text-[2.3rem] mb-5">خدماتی که نیازهای بسته بندی شما را برآورده می کند</h2>
+            <p className="font-Samim text-[1.1rem]">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
+          </div>
+          <div className="flex flex-col gap-5 md:flex-row md:flex-wrap xl:flex-nowrap items-center justify-between w-full mt-16">
+             <Features img="images/img-icon-factory.png" title="طراحی بسته بندی" />
+             <Features img="images/img-icon-package.png" title="طراحی لوگو" />
+             <Features img="images/img-icon-startup.png" title="نمونه برداری" />
+             <Features img="images/img-icon-cube.png" title="تولید مدیریت شده" />
+          </div>
+         </div>
+      </section>
 
+      
 
       <br />
       <br />
