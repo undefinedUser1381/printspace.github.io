@@ -134,6 +134,11 @@ export default function Home() {
              </Swiper>
           </div> 
        </section>
+
+       {/* Products */}
+       <section className='mt-20 bg-slate-600 h-10'>
+                    
+       </section>
       
 
       <br />
