@@ -4,6 +4,7 @@ import Carts from "../../components/Carts/Carts";
 import Features from "../../components/Features/Features";
 import Steps from "../../components/Steps/Steps";
 import Comment from "../../components/Comment/Comment";
+import Products from '../../components/Products/Products';
 
 export default function Home() {
   return (
@@ -122,7 +123,7 @@ export default function Home() {
                       slidesPerView: 3,
                     },
                     1200:{
-                      width: 1520,
+                      width: 1500,
                       slidesPerView: 4,
                     }
                   }}
@@ -131,13 +132,33 @@ export default function Home() {
               <SwiperSlide><Comment img="images/testi-avatar-2.jpg" name="ممد کربلایی رمضان" job="هوش مصنوعی"/></SwiperSlide>
               <SwiperSlide><Comment img="images/testi-avatar-3.jpg" name="سید احمد" job="وب دولوپر"/></SwiperSlide>
               <SwiperSlide><Comment img="images/testi-avatar-5.jpg" name="حج نوروز" job="بازاریاب"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-5.jpg" name="حج نوروز" job="بازاریاب"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-5.jpg" name="حج نوروز" job="بازاریاب"/></SwiperSlide>
+              <SwiperSlide><Comment img="images/testi-avatar-5.jpg" name="حج نوروز" job="بازاریاب"/></SwiperSlide>
              </Swiper>
           </div> 
        </section>
 
        {/* Products */}
-       <section className='mt-20 bg-slate-600 h-10'>
-                    
+       <section className='mt-20 bg-white h-[20rem]'>
+            <div className='container'>
+             <div className='w-full'>
+              <div className='w-full flex flex-col md:flex-row gap-8 items-center justify-between'>
+               <p className='font-Samim text-[1.3rem] lg:text-[2.3rem]'>جدید ترین ها <span className='text-[#9B9B9B99]'>پرفروش ترین ویژه ها</span></p>
+               <a href="" className='font-Samim text-center border transition-all duration-200 p-3 w-[11rem] hover:text-white hover:bg-[#1B6F58]'>نمایش همه محصولات</a>
+              </div>
+              <div className='flex items-center mt-16 flex-wrap justify-between gap-0 lg:gap-5 xl:gap-3 w-full'>
+                <Products/> 
+                <Products/> 
+                <Products/> 
+                <Products/> 
+                <Products/> 
+                <Products/> 
+                <Products/> 
+                <Products/> 
+              </div>
+             </div>
+            </div>   
        </section>
       
 
