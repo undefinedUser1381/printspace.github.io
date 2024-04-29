@@ -53,7 +53,7 @@ export default function Footer() {
      </section>
 
       {/* Footer for mobile */}
-      <section className="flex fixed left-0 bottom-0 right-0 w-full pt-4 pb-4 pr-10 pl-10 bg-white md:hidden">
+      <section className="flex fixed left-0 bottom-0 right-0 z-0 w-full pt-4 pb-4 pr-10 pl-10 bg-white md:hidden">
           <div className="flex items-center w-full justify-between">
             <div className="flex flex-col gap-2 items-center justify-between cursor-pointer">
                <div>
