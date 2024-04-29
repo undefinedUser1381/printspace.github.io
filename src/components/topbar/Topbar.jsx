@@ -169,7 +169,7 @@ export default function Topbar() {
        </section>
 
        {/* Sidebar basket */}
-       <section className={`fixed z-10 ${sideBarBasket ? "left-0" : "left-[-25rem]"} top-0 bottom-0 transition-all duration-200 w-72 sm:w-80 bg-white`}>
+       <section className={`fixed z-30 ${sideBarBasket ? "left-0" : "left-[-25rem]"} top-0 bottom-0 transition-all duration-200 w-72 sm:w-80 bg-white`}>
          <div className="p-5 h-full flex flex-col justify-between">
            <div className="flex flex-col gap-5">
            <div className="flex items-center justify-between w-full">
@@ -204,7 +204,7 @@ export default function Topbar() {
          </div>
        </section>
 
-       <section onClick={() => setSideBarBasket(false)} className={`fixed cursor-pointer transition-all duration-200 ${sideBarBasket ? "visible opacity-80" : "invisible opacity-0"} top-0 left-0 bottom-0 right-0 w-full h-full bg-black z-0`}></section>
+       <section onClick={() => setSideBarBasket(false)} className={`fixed cursor-pointer transition-all duration-200 ${sideBarBasket ? "visible opacity-80" : "invisible opacity-0"} top-0 left-0 bottom-0 right-0 w-full h-full bg-black z-10`}></section>
 
     </header>
   )
