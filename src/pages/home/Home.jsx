@@ -5,6 +5,7 @@ import Features from "../../components/Features/Features";
 import Steps from "../../components/Steps/Steps";
 import Comment from "../../components/Comment/Comment";
 import Products from '../../components/Products/Products';
+import Service from '../../components/Services/Service';
 
 export default function Home() {
   return (
@@ -89,7 +90,7 @@ export default function Home() {
       <section className="mt-20">
          <div className="container">
           <div className="flex flex-col">
-            <h2 className="font-Samim text-[2.3rem] mb-5">خدماتی که نیازهای بسته بندی شما را برآورده می کند</h2>
+            <h2 className="font-Samim text-[1.5rem] sm:text-[2.3rem] mb-5">خدماتی که نیازهای بسته بندی شما را برآورده می کند</h2>
             <p className="font-Samim text-[1.1rem]">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.</p>
           </div>
           <div className="flex flex-col gap-5 md:flex-row md:flex-wrap xl:flex-nowrap items-center justify-between w-full mt-16">
@@ -140,7 +141,7 @@ export default function Home() {
        </section>
 
        {/* Products */}
-       <section className='mt-20 bg-white h-[20rem]'>
+       <section className='mt-20 bg-white h-auto'>
             <div className='container'>
              <div className='w-full'>
               <div className='w-full flex flex-col md:flex-row gap-8 items-center justify-between'>
@@ -160,21 +161,18 @@ export default function Home() {
              </div>
             </div>   
        </section>
-      
 
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+       {/* Services */}
+       <section className='mt-28 h-auto'>
+          <div className='container'>
+           <div className='flex flex-col sm:flex-wrap sm:flex-row xl:flex-nowrap gap-14 items-center justify-between'>
+              <Service title="ارسال رایگان" desc="با خرید بالای فلان تومن" icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 stroke-[#1B6F58]"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>} />
+              <Service title="پشتیبانی" desc="تیم پشتیبانی شبانه روزی" icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 stroke-[#1B6F58]"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>} />
+              <Service title="طراحی فوق العاده" desc="طراحی به صرفه" icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 stroke-[#1B6F58]"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>} />
+              <Service title="پرداخت" desc="با تمام درگاه ها" icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-12 h-12 stroke-[#1B6F58]"><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Z" /></svg>} />
+           </div>
+          </div>
+       </section>
    
     </main>
   )
