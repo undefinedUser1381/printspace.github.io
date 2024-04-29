@@ -1,6 +1,7 @@
 import { useRoutes } from "react-router-dom"
 import routes from "./routes"
 import Topbar from "./components/topbar/Topbar"
+import Footer from "./components/footer/Footer"
 
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
     <> 
           <Topbar/>
           <div>{allRoutes}</div>
+          <Footer/>
     </>
   )
 }
