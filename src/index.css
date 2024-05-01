@@ -33,4 +33,7 @@
           width: 0.1rem;
           background: #ccc;
     }
+    .row-type{
+        @apply w-full flex items-center justify-between flex-wrap
+    }
 }
