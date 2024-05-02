@@ -11,7 +11,7 @@ export default function App() {
   return (
     <> 
           <Topbar/>
-          <div>{allRoutes}</div>
+          <>{allRoutes}</>
           <Footer/>
     </>
   )
