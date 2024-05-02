@@ -1,9 +1,15 @@
-export default function Products() {
+export default function Products(props) {
+
+ const {name,src,price,discount} = props;
+
+//  Show price with discount
+ let totalPrice = price - (price * discount / 100);
+
   return (
     <div className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
       <div className="relative">
         <div className="overflow-hidden rounded-lg">
-         <img src="images/single-product-2-1.jpg" alt="" />
+         <img src={src} alt="" />
         </div>
         <div className="absolute right-2 top-2">
             <div className="bg-[#F09155] text-[0.7rem] flex items-center justify-center p-2 rounded-md font-Samim text-white">
@@ -29,12 +35,13 @@ export default function Products() {
         </div>
       </div>
       <div>
-         <p className="font-Samim text-center">هودی هودی</p>
+         <p className="font-Samim text-center">{name}</p>
          <div className="flex items-center mt-2 font-Yekan justify-center gap-5">
-            <span className="text-[#1B6F58]">26,000 تومان</span>
-            <span className="line-through text-[0.8rem] text-[#777]">23,000 تومان</span>
+            <span className="text-[#1B6F58]">{totalPrice} تومان</span>
+            <span className="line-through text-[0.8rem] text-[#777]"> {price} تومان</span>
          </div>
       </div>
     </div>
   )
 }
+
