@@ -34,6 +34,6 @@
           background: #ccc;
     }
     .row-type{
-        @apply w-full flex items-center justify-between flex-wrap
+        @apply w-full flex items-center justify-start flex-wrap
     }
 }
