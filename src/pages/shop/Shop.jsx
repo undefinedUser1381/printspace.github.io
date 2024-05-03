@@ -10,6 +10,7 @@ export default function Shop() {
    const [status,setStatus] = useState("default");
   //  state for ordering by choosing items
    const [orderedProducts,setOrderedProducts] = useState([]);
+   const [searchPrd,setSearchPrd] = useState("");
 
    useEffect(() => {
     getProducts(); 
@@ -55,6 +56,12 @@ export default function Shop() {
     }
   },[status,products])
   
+  // Search products
+  const searchProducts = (e) => {
+    setSearchPrd(e.target.value);
+    const filteredProducts = products.filter(product => product.name.includes(e.target.value));
+    setOrderedProducts(filteredProducts);
+  }
 
   return (
     <>
@@ -63,7 +70,7 @@ export default function Shop() {
           <div className="container">
             <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row items-center justify-between w-full shadow-lg p-3">
              <div className="w-full lg:w-[25%]">
-              <input type="text" className="border outline-none font-Samim transition-all w-full duration-200 focus:border-black p-2 bg-[#F8F8F8]" placeholder="جستجوی محصولات..."/>
+              <input type="text" onChange={(e) => searchProducts(e)} value={searchPrd} className="border outline-none font-Samim transition-all w-full duration-200 focus:border-black p-2 bg-[#F8F8F8]" placeholder="جستجوی محصولات..."/>
              </div>
              <div className="w-full gap-4 lg:gap-0 sm:w-full lg:w-[70%] xl:w-[50%] flex flex-col lg:flex-row items-center justify-between">
                 <select onChange={(e) => setStatus(e.target.value)} className="font-Samim rounded-lg transition-all duration-200 cursor-pointer outline-none focus:outline-black bg-[#F8F8F8] p-2 w-full sm:w-[100%] lg:w-[55%]" name="" id="">
@@ -136,7 +143,11 @@ export default function Shop() {
                           )
                         ))) 
                          : 
-                        (<><p>وجود ندارد!!</p></>)
+                        (<>
+                          <div className="bg-[#ff7979] w-full p-3">
+                             <p className="font-Samim text-white">چنین محصولی وجود ندارد !!</p>
+                          </div>
+                        </>)
                       }
             </div>
           </div>
