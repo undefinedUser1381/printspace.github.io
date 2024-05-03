@@ -4,8 +4,12 @@ import Products from "../../components/Products/Products"
 
 export default function Shop() {
 
-   const [displayType,setDisplayType] = useState("column");
+   const [displayType,setDisplayType] = useState("row");
    const [products,setProducts] = useState([]);
+   // state for default value  
+   const [status,setStatus] = useState("default");
+  //  state for ordering by choosing items
+   const [orderedProducts,setOrderedProducts] = useState([]);
 
    useEffect(() => {
     getProducts(); 
@@ -19,6 +23,39 @@ export default function Shop() {
     })
   }
 
+  // Update status with choosing options
+  useEffect(() => {
+    switch(status){
+      case "money" : {
+         let orderProducts = products.filter(product => product.price !== 0)
+         setOrderedProducts(orderProducts)
+         break;
+      }
+      case "free" : {
+        let freeProducts = products.filter(product => product.price === 0)
+        setOrderedProducts(freeProducts)
+        break;
+      }
+      case "expensive" : {
+        setOrderedProducts(products.sort((a,b) => a.price - b.price).reverse())
+        break;
+      }
+      case "cheap" : {
+        setOrderedProducts(products.sort((a,b) => b.price - a.price).reverse())
+        break;
+      }
+      case "discount" : {
+        let discountProducts = products.filter(product => product.discount > 0)
+        setOrderedProducts(discountProducts)
+        break;
+      }
+      default:{
+        setOrderedProducts(products);
+      }
+    }
+  },[status,products])
+  
+
   return (
     <>
         <Breadcrumb link="shop" title="فروشگاه"/>
@@ -29,12 +66,13 @@ export default function Shop() {
               <input type="text" className="border outline-none font-Samim transition-all w-full duration-200 focus:border-black p-2 bg-[#F8F8F8]" placeholder="جستجوی محصولات..."/>
              </div>
              <div className="w-full gap-4 lg:gap-0 sm:w-full lg:w-[70%] xl:w-[50%] flex flex-col lg:flex-row items-center justify-between">
-                <select className="font-Samim rounded-lg transition-all duration-200 cursor-pointer outline-none focus:outline-black bg-[#F8F8F8] p-2 w-full sm:w-[100%] lg:w-[55%]" name="" id="">
+                <select onChange={(e) => setStatus(e.target.value)} className="font-Samim rounded-lg transition-all duration-200 cursor-pointer outline-none focus:outline-black bg-[#F8F8F8] p-2 w-full sm:w-[100%] lg:w-[55%]" name="" id="">
                   <option value="default">پیش فرض</option>
                   <option value="expensive">گران ترین</option>
                   <option value="cheap">ارزان ترین</option>
-                  <option value="popular">محبوب ترین ها</option>
-                  <option value="topsale">پرفروش</option>
+                  <option value="money">پولی</option>
+                  <option value="free">رایگان</option>
+                  <option value="discount">با تخفیف</option>
                 </select>
                 <div className="w-full lg:w-[40%] flex items-center justify-between">
                     <p className="font-Samim">مشاهده</p>
@@ -57,7 +95,9 @@ export default function Shop() {
             </div>
             <div className={`${displayType === "row" ? "row-type" : ""} mt-10`}>
                        {
-                        products.map(product => (
+                        orderedProducts.length ?
+                        ( 
+                          orderedProducts.map(product => (
                           product.discount > 0 ? ( <Products key={product.id} {...product} />) 
                           :
                           (
@@ -94,7 +134,9 @@ export default function Shop() {
                             </div>
                             </>
                           )
-                        ))
+                        ))) 
+                         : 
+                        (<><p>وجود ندارد!!</p></>)
                       }
             </div>
           </div>
