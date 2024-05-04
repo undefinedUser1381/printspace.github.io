@@ -1,4 +1,5 @@
-import { useEffect,useState } from 'react';
+// import { useEffect,useState } from 'react';
+import useFetch from '../../hooks/useFetch';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Carts from "../../components/Carts/Carts";
@@ -10,32 +11,10 @@ import Service from '../../components/Services/Service';
 
 export default function Home() {
 
-  const [comments,setComments] = useState([]);
-  const [products,setProducts] = useState([]);
+  const [comments] = useFetch("http://localhost:4000/comments");
+  const [products] = useFetch("http://localhost:4000/products");
 
-  useEffect(() => {
-    getComments();
-    getProducts();
-  },[]);
-
-  const getComments = () => {
-     fetch("http://localhost:4000/comments")
-     .then(res => res.json())
-     .then(data => {
-       setComments(data)
-     })
-  };
-
-  const getProducts = () => {
-    fetch("http://localhost:4000/products")
-    .then(res => res.json())
-    .then(data => {
-      setProducts(data)
-    })
-  }
-
-  return (
-    
+  return (  
     <main>
       {/* Main section */}
       <section className="bg-[#F7F6F1] mt-10">
