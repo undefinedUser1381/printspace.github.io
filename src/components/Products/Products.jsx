@@ -1,12 +1,14 @@
+import { Link } from "react-router-dom";
+
 export default function Products(props) {
 
- const {name,src,price,discount} = props;
+ const {id,name,src,price,discount} = props;
 
 //  Show price with discount
  let totalPrice = price - (price * discount / 100);
 
   return (
-    <div className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
+    <Link to={`/MainProduct/${id}`} className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
       <div className="relative">
         <div className="overflow-hidden rounded-lg">
          <img src={src} alt="" />
@@ -41,7 +43,7 @@ export default function Products(props) {
             <span className="line-through text-[0.8rem] text-[#777]"> {price} تومان</span>
          </div>
       </div>
-    </div>
+    </Link>
   )
 }
 
