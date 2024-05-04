@@ -1,28 +1,18 @@
 import { useState,useEffect } from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb"
 import Products from "../../components/Products/Products"
+import useFetch from "../../hooks/useFetch";
 
 export default function Shop() {
 
    const [displayType,setDisplayType] = useState("row");
-   const [products,setProducts] = useState([]);
+  //  use cutom hook
+   const [products] = useFetch("http://localhost:4000/products");
    // state for default value  
    const [status,setStatus] = useState("default");
   //  state for ordering by choosing items
    const [orderedProducts,setOrderedProducts] = useState([]);
    const [searchPrd,setSearchPrd] = useState("");
-
-   useEffect(() => {
-    getProducts(); 
-   },[]);
-
-   const getProducts = () => {
-    fetch("http://localhost:4000/products")
-    .then(res => res.json())
-    .then(data => {
-      setProducts(data)
-    })
-  }
 
   // Update status with choosing options
   useEffect(() => {
@@ -66,13 +56,13 @@ export default function Shop() {
   return (
     <>
         <Breadcrumb link="shop" title="فروشگاه"/>
-        <section className="mt-20">
+         <section className="mt-20">
           <div className="container">
             <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row items-center justify-between w-full shadow-lg p-3">
              <div className="w-full lg:w-[25%]">
               <input type="text" onChange={(e) => searchProducts(e)} value={searchPrd} className="border outline-none font-Samim transition-all w-full duration-200 focus:border-black p-2 bg-[#F8F8F8]" placeholder="جستجوی محصولات..."/>
-             </div>
-             <div className="w-full gap-4 lg:gap-0 sm:w-full lg:w-[70%] xl:w-[50%] flex flex-col lg:flex-row items-center justify-between">
+              </div>
+              <div className="w-full gap-4 lg:gap-0 sm:w-full lg:w-[70%] xl:w-[50%] flex flex-col lg:flex-row items-center justify-between">
                 <select onChange={(e) => setStatus(e.target.value)} className="font-Samim rounded-lg transition-all duration-200 cursor-pointer outline-none focus:outline-black bg-[#F8F8F8] p-2 w-full sm:w-[100%] lg:w-[55%]" name="" id="">
                   <option value="default">پیش فرض</option>
                   <option value="expensive">گران ترین</option>
