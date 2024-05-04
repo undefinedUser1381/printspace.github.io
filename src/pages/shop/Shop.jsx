@@ -2,6 +2,7 @@ import { useState,useEffect } from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb"
 import Products from "../../components/Products/Products"
 import useFetch from "../../hooks/useFetch";
+import { Link } from "react-router-dom";
 
 export default function Shop() {
 
@@ -55,7 +56,16 @@ export default function Shop() {
 
   return (
     <>
-        <Breadcrumb link="shop" title="فروشگاه"/>
+       <div className="bg-[#F5F5F5] flex flex-col h-[15rem] mt-10 p-10">
+         <h2 className="text-center text-[2rem] font-bold mt-5">فروشگاه</h2>
+         <div className="w-[15%] mx-auto">
+          <Breadcrumb>
+            <Link to={"/"}>خانه</Link>
+            <div>----</div>
+            <Link className="font-bold" to={"/Shop"}>فروشگاه</Link>
+          </Breadcrumb>   
+         </div>
+        </div>
          <section className="mt-20">
           <div className="container">
             <div className="flex flex-col gap-4 lg:gap-0 lg:flex-row items-center justify-between w-full shadow-lg p-3">
@@ -99,7 +109,7 @@ export default function Shop() {
                           :
                           (
                             <>
-                            <div className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
+                            <Link to={`/MainProduct/${product.id}`} className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
                             <div className="relative">
                               <div className="overflow-hidden rounded-lg">
                               <img src={product.src} alt="" />
@@ -128,7 +138,7 @@ export default function Shop() {
                                   <span className="text-[#1B6F58]">{product.price} تومان</span>
                               </div>
                             </div>
-                            </div>
+                            </Link>
                             </>
                           )
                         ))) 
