@@ -5,7 +5,7 @@ export default function ProductWithoutDiscount(props) {
   const {id,name,src,price} = props;
 
   return (
-    <Link to={`/MainProduct/${id}`} className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
+    <Link to={`/MainProduct/${id}`} className="w-[50%] lg:w-[31%] xl:w-[24%] flex flex-col group gap-5 p-4 md:p-8 xl:p-4 cursor-pointer rounded-lg bg-white transition-all duration-200 hover:translate-y-[-1rem] hover:shadow-xl">
     <div className="relative">
       <div className="overflow-hidden rounded-lg">
       <img src={src} alt="" />
