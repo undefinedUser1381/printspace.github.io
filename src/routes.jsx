@@ -8,11 +8,11 @@ import NotFound from "./pages/NotFound/NotFound.jsx"
 let routes = 
 [
      {path:"/" , element : <Home/>},
-     {path:"/basket" , element : <Basket/>},
-     {path:"/shop" , element : <Shop/>},
+     {path:"/Basket" , element : <Basket/>},
+     {path:"/Shop" , element : <Shop/>},
      {path:"/MainProduct/:ID" , element : <MainProduct/>},
      {path:"/Notfound" , element : <NotFound/>},
-     {path:"/panel" , element : <Panel/>},
+     {path:"/Panel" , element : <Panel/>},
 ]
 
 export default routes;
