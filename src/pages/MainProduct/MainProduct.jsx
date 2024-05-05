@@ -4,11 +4,14 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import { Link } from "react-router-dom";
 
 export default function MainProduct() {
-
+  
   const productToFind = useParams();
+
   const [products] = useFetch("http://localhost:4000/products");
 
-  let findedProduct = products.some(product => product.id == productToFind.ID);
+  let findedProduct = products.some(prd => prd.id === productToFind.ID);
+
+  console.log(findedProduct);
 
   return (
     <div>
@@ -40,11 +43,12 @@ export default function MainProduct() {
        <div className="mt-20">
          <div className="container">
            <div className="flex items-center justify-center">
-            {products.find(product => product.id == productToFind.ID).name}
-            <span className="font-Yekan">{products.find(product => product.id == productToFind.ID).price}</span>
-           </div>
-           <div>
-            <img className="w-32 h-32" src={products.find(product => product.id == productToFind.ID).src} alt="" />
+              {products.find(prd => prd.id == productToFind.ID).name}
+              <br />
+              {products.find(prd => prd.id == productToFind.ID).price}
+              <br />
+              {products.find(prd => prd.id == productToFind.ID).discount}
+              <img className="w-full h-[20rem] object-cover" src={products.find(prd => prd.id == productToFind.ID).src} alt="" />
            </div>
          </div>
        </div>
