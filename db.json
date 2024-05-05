@@ -9,13 +9,13 @@
       { "id": "8", "name":"حاجی سمی" , "job":"هههه فروش" , "desc": "“ لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.”", "src": "images/testi-avatar-3.jpg"}
     ],
     "products" : [
-      {"id" : "1" , "name" : "طراحی پاکت" , "src" : "images/single-product-2-1.jpg" , "count" : "10" , "discount" : "5" , "price" : "350000"},
-      {"id" : "2" , "name" : "چاپ روی پاکت" , "src" : "images/single-product-6-1-300x300.jpg" , "count" : "10" , "discount" : "9" , "price" : "45000"},
-      {"id" : "3" , "name" : "چاپ روی بطری" , "src" : "images/single-product-8-1.jpg" , "count" : "20" , "discount" : "10" , "price" : "134000"},
-      {"id" : "4" , "name" : "چاپ روی آدامس" , "src" : "images/single-product-10-.webp" , "count" : "5" , "discount" : "11" , "price" : "76000"},
-      {"id" : "5" , "name" : "چاپ روی شیشه" , "src" : "images/single-product-6-1-300x300.jpg" , "count" : "6" , "discount" : "0" , "price" : "89000"},
-      {"id" : "6" , "name" : "پاکت محصول" , "src" : "images/single-product-8-1.jpg" , "count" : "4" , "discount" : "0" , "price" : "112000"},
-      {"id" : "7" , "name" : "چاپ روی عطر" , "src" : "images/single-product-2-1.jpg" , "count" : "3" , "discount" : "0" , "price" : "78000"},
-      {"id" : "8" , "name" : "نمیدونم اسمشو" , "src" : "images/single-product-6-1-300x300.jpg" , "count" : "5" , "discount" : "12" , "price" : "56000"}
+      {"id" : "1" , "name" : "طراحی پاکت" , "src" : "/images/single-product-2-1.jpg" , "count" : "10" , "discount" : "5" , "price" : "350000"},
+      {"id" : "2" , "name" : "چاپ روی پاکت" , "src" : "/images/single-product-6-1-300x300.jpg" , "count" : "10" , "discount" : "9" , "price" : "45000"},
+      {"id" : "3" , "name" : "چاپ روی بطری" , "src" : "/images/single-product-8-1.jpg" , "count" : "20" , "discount" : "10" , "price" : "134000"},
+      {"id" : "4" , "name" : "چاپ روی آدامس" , "src" : "/images/single-product-10-.webp" , "count" : "5" , "discount" : "11" , "price" : "76000"},
+      {"id" : "5" , "name" : "چاپ روی شیشه" , "src" : "/images/single-product-6-1-300x300.jpg" , "count" : "6" , "discount" : "0" , "price" : "89000"},
+      {"id" : "6" , "name" : "پاکت محصول" , "src" : "/images/single-product-8-1.jpg" , "count" : "4" , "discount" : "0" , "price" : "112000"},
+      {"id" : "7" , "name" : "چاپ روی عطر" , "src" : "/images/single-product-2-1.jpg" , "count" : "3" , "discount" : "0" , "price" : "78000"},
+      {"id" : "8" , "name" : "نمیدونم اسمشو" , "src" : "/images/single-product-6-1-300x300.jpg" , "count" : "5" , "discount" : "12" , "price" : "56000"}
     ]
   }
