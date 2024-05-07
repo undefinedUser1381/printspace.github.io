@@ -1,30 +1,26 @@
 import { useParams } from "react-router-dom"
-import { useState , useEffect } from "react";
-import useFetch from "../../hooks/useFetch";
+import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import { Link } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
 export default function MainProduct() {
   
   const productToFind = useParams();
 
   const [openCommentTab,setCommentsTabs] = useState(false);
-  const [openDescriptionTab,setDescriptionTab] = useState(false);
+  const [openDescriptionTab,setDescriptionTab] = useState(true);
   const [showFixedContent,setShowFixedContent] = useState(false);
 
-  useEffect(() => {
-       window.addEventListener("scroll",() => {
-            if(document.documentElement.scrollTop > 350){
-                 setShowFixedContent(true);
-            }else{
-                 setShowFixedContent(false);
-            }
-       });  
-  },[]);
+  const [products] = useFetch(`http://localhost:4000/products/${productToFind.ID}`)
 
-  const [products] = useFetch("http://localhost:4000/products");
-
-  let findedProduct = products.some(prd => prd.id === productToFind.ID);
+   window.addEventListener("scroll",() => {
+    if(document.documentElement.scrollTop > 350){
+         setShowFixedContent(true);
+    }else{
+         setShowFixedContent(false);
+    }
+});  
 
    const showComments = () => {
        setCommentsTabs(true)
@@ -36,17 +32,7 @@ export default function MainProduct() {
    }
 
   return (
-    <div>
-     {
-      !findedProduct ? (
-        <div className="container">
-        <div className="bg-[#ff7979] w-full p-3 mt-10">
-          <p className="font-Samim text-white text-center">چنین محصولی وجود ندارد !!</p>
-        </div>  
-        </div>
-      ) 
-      : 
-      (
+    <>
        <section>
         <div className="mt-10">
           <div className="bg-[#F5F5F5] h-auto flex flex-col justify-center items-center">
@@ -56,7 +42,7 @@ export default function MainProduct() {
               <div>----</div>
               <Link to={"/Shop"}>فروشگاه</Link>
               <div>----</div>
-              <Link className="font-bold">{products.find(prd => prd.id == productToFind.ID).name}</Link>
+              <Link className="font-bold">{products.name}</Link>
             </Breadcrumb> 
            </div>  
         </div>
@@ -64,10 +50,11 @@ export default function MainProduct() {
        {/* Product Details */}
        <div className="mt-20">
          <div className="container">
+           {/* Details */}
            <div className="flex flex-col lg:flex-row items-start justify-center gap-5 p-5 border-b border-[#eee]">
              <div className="w-full lg:w-[40%] h-[30rem] cursor-pointer">
                <div className="w-full h-full overflow-hidden rounded-xl">
-                 <img className="w-full h-full object-cover" src="/images/single-product-8-1.jpg" alt="" />
+                 <img className="w-full h-full object-cover" src={products.src} alt="" />
                </div>
              </div>
              <div className="w-full lg:w-[45%]">
@@ -76,10 +63,10 @@ export default function MainProduct() {
                      <p className="font-Samim font-bold">قیمت : </p>
                      <div className="flex items-center gap-5 justify-between">
                       <p className="text-[#1B6F58]">28,000 تومان</p>
-                      <p className="text-[#777] line-through">33,000 تومان</p>
+                      <p className="text-[#777] line-through">{products.price}</p>
                      </div>
                   </div>
-                  <p className="font-bold font-Samim text-[1.3rem]">نام محصول</p>
+                  <p className="font-bold font-Samim text-[1.3rem]">{products.name}</p>
                   <p className="font-Samim text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
                   <div className="w-full flex items-center justify-between">
                      <div className="bg-[#F8F8F8] flex items-center *:text-[1.2rem] *:font-Samim p-2 justify-between w-[30%]">
@@ -90,7 +77,7 @@ export default function MainProduct() {
                      <div className="w-[65%]"><button className="w-full p-3 rounded-lg text-white font-Samim bg-[#1B6F58]">افزودن به سبد خرید</button></div>
                   </div>
                   <p className="font-Samim text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
-                  <div className="flex w-full lg:w-[50%] items-center *:font-Samim justify-between">
+                  <div className="flex w-full lg:w-[75%] xl:w-[55%] items-center *:font-Samim justify-between">
                         <p className="text-[0.9rem]">برچسب ها :</p>
                         <p className="text-[#777]">هودی - لباس - محصولات - با کیفیت</p>   
                   </div>
@@ -106,7 +93,7 @@ export default function MainProduct() {
                </ul>
            </div>
            {/* Tabs Content */}
-           <div className="flex items-center justify-center flex-col mt-10">
+           <div className="flex items-center justify-center mt-10">
                {/* Description */}
                <div className={`${openDescriptionTab ? "flex" : "hidden"} flex-col gap-5`}>
                   <div className="*:font-Samim pr-12 pl-12">
@@ -114,18 +101,56 @@ export default function MainProduct() {
                       <p className="text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای  طراحان خلاقی  فارسی ایجاد کرد.</p>
                   </div>
                   <div className="w-full mt-10 flex items-center justify-center h-[30rem]">
-                     <img className="w-[40%] h-full object-cover" src="/images/single-product-8-1.jpg" alt="" />
+                     <img className="w-full sm:w-[40%] h-full object-cover" src={products.src} alt="" />
                   </div>
                   <div className="*:font-Samim pr-12 mt-10 pl-12">
-                      <p className="text-[#777] mb-5">محصول سیار یتبت چگونه لورم تیپسوم نمدونم اره خودشه این محصول بی نظیر</p>
+                      <p className="text-[#777] mb-5 leading-8">محصول سیار یتبت چگونه لورم تیپسوم نمدونم اره خودشه این محصول بی نظیر</p>
                       <h4 className="font-bold mb-5">یه تایتل دیگه</h4>
                       <p className="text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای  طراحان خلاقی  فارسی ایجاد اره اینجوری ایمجوری شد که این کثدبندذ محثول با ریکت درست شد ولی من نتونستم درست کنم در حد لالیگا مهندسی ساختمانی کرد.</p>
                       <p className="text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد.کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای  طراحان خلاقی  فارسی ایجاد اره اینجوری ایمجوری شد که این کثدبندذ محثول با ریکت درست شد ولی من نتونستم درست کنم در حد لالیگا مهندسی ساختمانی کرد.</p>
                   </div>
                </div>
               {/* Comments */}
-              <div className={`${openCommentTab ? "flex" : "hidden"}`}>
-
+              <div className={`${openCommentTab ? "flex" : "hidden"} w-full lg:w-[60%]`}>
+                  <div className="mt-10 w-[100%] border-b-2 pb-8">
+                      <div className="flex flex-col gap-5">
+                        <h3 className="font-Yekan font-bold text-[1.2rem]">1 دیدگاه برای محصول</h3>
+                        <div className="border-dotted border-[3px] flex items-center gap-3 mt-2 shadow-lg p-3 justify-start">
+                          <div className="w-16 overflow-hidden rounded-[50%] h-16"><img className="w-full h-full" src="/images/user.png" alt="" /></div>
+                          <div className="flex flex-col gap-3">
+                             <p className="font-Samim">elmira</p>
+                             <p className="font-Samim text-[#777]">عالی بود</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-10 flex *:font-Samim flex-col">
+                          <h2 className="mb-5">دیدگاه خود را بنویسید</h2>
+                          <p className="text-[#777] text-[0.9rem]">نشانی ایمیل شما منتشر نخواهد شد. بخش‌های موردنیاز علامت‌گذاری شده‌اند <span className="text-red-600">*</span></p>
+                          <div className="flex items-center justify-start mt-5 gap-3">
+                            <p className="text-[#777] text-[0.9rem]">امتیاز شما <span className="text-red-600">*</span></p>
+                            <div className="flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-yellow-300 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-yellow-300 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-yellow-300 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-yellow-300 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 stroke-yellow-300 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" /></svg>
+                            </div>
+                          </div>
+                          <form action="" className="mt-5">
+                           <div className="flex flex-col gap-5">
+                              <label className="text-[#777] text-[0.9rem]" htmlFor="">دیدگاه شما <span className="text-red-600">*</span></label>
+                              <textarea name="" placeholder="دیدگاه شما ..." className="bg-[#F5F5F5] text-[0.9rem] font-Samim border-2 rounded-sm resize-none w-full outline-none p-5 transition focus:border-[#1B6F58]" id="" rows="10"></textarea>
+                           </div>
+                           <div className="flex items-center mt-5 *:font-Samim gap-5 justify-center">
+                               <div className="flex flex-col w-[50%] gap-3"><label htmlFor="">نام <span className="text-red-600">*</span></label><input className="p-2 rounded-sm outline-none border text-[0.8rem] focus:border-[#1B6F58] bg-[#F5F5F5] transition" type="text" /></div>
+                               <div className="flex flex-col w-[50%] gap-3"><label htmlFor="">ایمیل <span className="text-red-600">*</span></label><input className="p-2 rounded-sm outline-none border text-[0.8rem] focus:border-[#1B6F58] bg-[#F5F5F5] transition" type="text" /></div>
+                           </div>
+                           <div className="flex items-center justify-start w-full sm:w-[20%] mt-10">
+                               <button className="font-Samim w-full bg-[#1B6F58] p-3 text-white rounded-md">ثبت نظر</button>
+                           </div>
+                          </form> 
+                      </div>
+                  </div>
               </div>
            </div>
            {/* Fixed Content */}
@@ -150,9 +175,6 @@ export default function MainProduct() {
          </div>
        </div>
      </section>
-       
-      )
-    }
-    </div>
+    </>
   )
 }
