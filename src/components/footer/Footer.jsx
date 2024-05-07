@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="container">
           <div className="flex flex-col gap-8 md:flex-row md:flex-wrap lg:flex-nowrap items-center justify-between pt-16 pb-16">
               <div className="flex flex-col items-start justify-center gap-5 w-full lg:w-[20%] md:w-[40%]">
-                 <div><img src="images/logo.png" alt="" /></div>
+                 <div><img src="/images/logo.png" alt="" /></div>
                  <p className="text-[#777]">erfanghezi5050@gmail.com</p>
                  <p className="font-Yekan font-bold">02188997722+</p>
                  <p className="font-Yekan text-[#777]">خیابان فلانی کوچه فلانی ط اول</p>
