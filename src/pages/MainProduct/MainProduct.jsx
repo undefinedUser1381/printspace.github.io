@@ -11,8 +11,11 @@ export default function MainProduct() {
   const [openCommentTab,setCommentsTabs] = useState(false);
   const [openDescriptionTab,setDescriptionTab] = useState(true);
   const [showFixedContent,setShowFixedContent] = useState(false);
+  const [count,setCount] = useState(0);
 
   const [products] = useFetch(`http://localhost:4000/products/${productToFind.ID}`)
+
+  const priceWithDiscount = (products.price - (products.price * products.discount / 100)).toLocaleString();
 
    window.addEventListener("scroll",() => {
     if(document.documentElement.scrollTop > 350){
@@ -20,7 +23,11 @@ export default function MainProduct() {
     }else{
          setShowFixedContent(false);
     }
-});  
+}); 
+
+   const addToBasket = (productID) => {
+        console.log(productID);
+   }
 
    const showComments = () => {
        setCommentsTabs(true)
@@ -51,30 +58,54 @@ export default function MainProduct() {
        <div className="mt-20">
          <div className="container">
            {/* Details */}
-           <div className="flex flex-col lg:flex-row items-start justify-center gap-5 p-5 border-b border-[#eee]">
-             <div className="w-full lg:w-[40%] h-[30rem] cursor-pointer">
+              <div className="flex flex-col lg:flex-row items-start justify-center gap-5 p-5 border-b border-[#eee]">
+               {
+                products.discount > 0 ? (
+              <div className="w-full relative lg:w-[40%] h-[30rem] cursor-pointer">
+               <div className="w-full h-full overflow-hidden rounded-xl">
+                 <img className="w-full h-full object-cover" src={products.src} alt="" />
+               </div>
+               <div className="absolute top-4 right-4 rounded-lg bg-[#F09155] p-2">
+                  <span className="font-Samim text-[0.9rem] font-bold text-white">فروش ویژه</span>
+               </div>
+             </div>
+                ) : (
+              <div className="w-full lg:w-[40%] h-[30rem] cursor-pointer">
                <div className="w-full h-full overflow-hidden rounded-xl">
                  <img className="w-full h-full object-cover" src={products.src} alt="" />
                </div>
              </div>
-             <div className="w-full lg:w-[45%]">
+                )
+               }
+               <div className="w-full lg:w-[45%]">
                 <div className="flex flex-col justify-between gap-10">
-                  <div className="flex justify-start gap-3 items-center *:text-[1.1rem] *:font-Yekan">
-                     <p className="font-Samim font-bold">قیمت : </p>
-                     <div className="flex items-center gap-5 justify-between">
-                      <p className="text-[#1B6F58]">28,000 تومان</p>
+                  {
+                    products.discount > 0 ? (
+                    <div className="flex justify-start gap-3 items-center *:text-[1.1rem] *:font-Yekan">
+                      <p className="font-Samim font-bold">قیمت : </p>
+                      <div className="flex items-center gap-5 justify-between">
+                      <p className="text-[#1B6F58] font-bold">{priceWithDiscount} تومان</p>
                       <p className="text-[#777] line-through">{products.price}</p>
                      </div>
-                  </div>
+                   </div>
+                    ) : (
+                     <div className="flex justify-start gap-3 items-center *:text-[1.1rem] *:font-Yekan">
+                      <p className="font-Samim font-bold">قیمت : </p>
+                      <div className="flex items-center gap-5 justify-between">
+                      <p className="text-[#1B6F58] font-Yekan">{products.price} تومان</p>
+                     </div>
+                    </div>
+                    ) 
+                  }
                   <p className="font-bold font-Samim text-[1.3rem]">{products.name}</p>
                   <p className="font-Samim text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
                   <div className="w-full flex items-center justify-between">
                      <div className="bg-[#F8F8F8] flex items-center *:text-[1.2rem] *:font-Samim p-2 justify-between w-[30%]">
-                        <div className="cursor-pointer">+</div>
-                        <div><span className="font-Yekan">0</span></div>
-                        <div className="cursor-pointer">-</div>
+                        <div onClick={() => setCount(prev => prev + 1)} className="cursor-pointer">+</div>
+                        <div><span className="font-Yekan">{count}</span></div>
+                        <div onClick={() => setCount(prev => prev - 1)} className="cursor-pointer">-</div>
                      </div>
-                     <div className="w-[65%]"><button className="w-full p-3 rounded-lg text-white font-Samim bg-[#1B6F58]">افزودن به سبد خرید</button></div>
+                     <div className="w-[65%]"><button onClick={() => addToBasket(products.id)} className="w-full p-3 rounded-lg text-white font-Samim bg-[#1B6F58]">افزودن به سبد خرید</button></div>
                   </div>
                   <p className="font-Samim text-[#777] leading-8">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است</p>
                   <div className="flex w-full lg:w-[75%] xl:w-[55%] items-center *:font-Samim justify-between">
@@ -83,8 +114,8 @@ export default function MainProduct() {
                   </div>
                 </div>
              </div>
-             <div></div>
            </div>
+
            {/* Tabs */}
            <div className="mt-20 w-full h-9">
                <ul className="flex items-center border-b-2 border-[#eee] *:text-[#777] *:text-[1.2rem] *:font-Samim justify-center gap-10">
@@ -157,16 +188,21 @@ export default function MainProduct() {
            <div className={`fixed hidden transition-all duration-200 ${showFixedContent ? "opacity-100 bottom-0" : "opacity-0 bottom-[-5rem]"} h-[5rem] md:flex bg-white items-center justify-center pl-10 pr-10 md:pl-36 md:pr-36 pt-10 pb-10 bottom-0 left-0 right-0 shadow-xl`}>
               <div className="flex items-center justify-between w-full">
                   <div className="flex items-center justify-center gap-4">
-                      <div className="w-22 h-16"><img className="w-full h-full" src="/images/single-product-8-1.jpg" alt="" /></div>
+                      <div className="w-22 h-16"><img className="w-full h-full" src={products.src} alt="" /></div>
                        <div className="flex flex-col gap-1">
                          <div className="flex items-center *:font-Samim justify-start gap-1">
                            <p>شما در حال مشاهده هستید : </p>
-                           <p className="font-bold">نام محصول</p>
+                           <p className="font-bold">{products.name}</p>
                          </div>
-                         <div className="flex items-center justify-start gap-1 *:font-Yekan">
-                            <p className="text-[#1B6F58]">تومان 26,000</p>
-                            <p className="line-through text-[#777]">32,000 تومان</p>
-                         </div>
+                         {
+                          products.discount > 0 ? (  <div className="flex items-center justify-start gap-1 *:font-Yekan">
+                            <p className="text-[#1B6F58] font-bold">تومان {priceWithDiscount}</p>
+                            <p className="line-through text-[#777]">{products.price}</p>
+                         </div>) :
+                          (<div className="flex items-center justify-start gap-1 *:font-Yekan">
+                            <p className="font-bold text-[#1B6F58]">{products.price} تومان</p>
+                         </div>)
+                         }
                        </div>
                   </div>
                   <button className="bg-[#1B6F58] text-white font-Samim rounded-md p-4 md:w-[25%] xl:w-[13%] text-center ">مشاهده</button>
