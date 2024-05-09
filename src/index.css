@@ -36,4 +36,7 @@
     .row-type{
         @apply w-full flex items-center justify-start flex-wrap mx-auto
     }
+    .transition{
+        @apply transition-all duration-200;
+    }
 }
