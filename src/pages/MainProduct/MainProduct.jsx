@@ -25,6 +25,7 @@ export default function MainProduct() {
     }
 }); 
 
+   // For adding a cart to basket 
    const addToBasket = (productID) => {
         console.log(productID);
    }
