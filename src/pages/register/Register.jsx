@@ -1,8 +1,4 @@
-import { useState } from "react";
-
 export default function Register() {
-
-  // const [email,setEmail] = useState("");
 
   return (
      <section className="mt-20">
