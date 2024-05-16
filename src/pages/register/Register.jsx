@@ -3,6 +3,7 @@ export default function Register() {
 
   const [register,setRegister] = useState("");
   const [login,setLogin] = useState("");
+  const [email,setEmail] = useState("");
 
   return (
      <section className="mt-20">
