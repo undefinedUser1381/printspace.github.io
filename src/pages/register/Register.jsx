@@ -2,6 +2,7 @@ import { useState } from "react"
 export default function Register() {
 
   const [register,setRegister] = useState("");
+  const [login,setLogin] = useState("");
 
   return (
      <section className="mt-20">
