@@ -39,4 +39,7 @@
     .transition{
         @apply transition-all duration-200;
     }
+    .toast-message{
+        @apply font-Samim text-right
+    }
 }
